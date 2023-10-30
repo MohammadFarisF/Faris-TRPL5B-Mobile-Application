@@ -3,22 +3,19 @@ package com.farisfawwaz.faristrpl5bmobileapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.farisfawwaz.faristrpl5bmobileapplication.screens.About
+import com.farisfawwaz.faristrpl5bmobileapplication.screens.ButtonColorViewModel
+import com.farisfawwaz.faristrpl5bmobileapplication.screens.Help
+import com.farisfawwaz.faristrpl5bmobileapplication.screens.Home
 import com.farisfawwaz.faristrpl5bmobileapplication.ui.theme.FarisTRPL5BMobileApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Faris Fawwaz")
+                    ScreenMain()
                 }
             }
         }
@@ -39,29 +36,19 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    val gradient = Brush.linearGradient(
-        0.0f to Color.Blue,
-        50.0f to Color.White,
-        start = Offset.Zero,
-        end = Offset.Infinite
-    )
-    Box(modifier = Modifier.background(gradient).fillMaxSize())
+fun ScreenMain() {
+    val navController = rememberNavController()
+    val buttonColorViewModel = remember { ButtonColorViewModel() }
 
-        Text(
-            text = "Hai Selamat Datang $name!",
-            color = Color.White,
-            modifier =Modifier.padding(30.dp),
-            fontWeight = FontWeight.ExtraBold,
-            fontSize = 30.sp
-
-        )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FarisTRPL5BMobileApplicationTheme {
-        Greeting("Android")
+    NavHost(navController = navController, startDestination = Routes.Home.route) {
+        composable(Routes.Home.route) {
+            Home(navController = navController, viewModel = buttonColorViewModel)
+        }
+        composable(Routes.About.route) {
+            About(navController = navController)
+        }
+        composable(Routes.Help.route) {
+            Help(navController = navController)
+        }
     }
 }
