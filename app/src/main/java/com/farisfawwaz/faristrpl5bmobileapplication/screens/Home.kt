@@ -44,6 +44,13 @@ fun Home(navController: NavHostController, viewModel: ButtonColorViewModel) {
             ) {
                 Text(text = "Change Button Color", color = Color.White)
             }
+            Button(
+                onClick = { navController.navigate(Routes.Jokes.route) },
+                colors = ButtonDefaults.buttonColors(viewModel.buttonColor),
+                modifier = Modifier.padding(start = 9.dp)
+            ) {
+                Text(text = "Navigate to Jokes", color = Color.White)
+            }
 
             Button(
                 onClick = { navController.navigate(Routes.About.route) },
