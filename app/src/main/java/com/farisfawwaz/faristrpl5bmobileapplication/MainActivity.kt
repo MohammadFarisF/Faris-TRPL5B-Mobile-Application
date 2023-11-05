@@ -16,6 +16,7 @@ import com.farisfawwaz.faristrpl5bmobileapplication.screens.About
 import com.farisfawwaz.faristrpl5bmobileapplication.screens.ButtonColorViewModel
 import com.farisfawwaz.faristrpl5bmobileapplication.screens.Help
 import com.farisfawwaz.faristrpl5bmobileapplication.screens.Home
+import com.farisfawwaz.faristrpl5bmobileapplication.screens.Jokes
 import com.farisfawwaz.faristrpl5bmobileapplication.ui.theme.FarisTRPL5BMobileApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -49,6 +50,9 @@ fun ScreenMain() {
         }
         composable(Routes.Help.route) {
             Help(navController = navController)
+        }
+        composable(Routes.Jokes.route) {
+            Jokes(navController = navController)
         }
     }
 }
